@@ -3,47 +3,70 @@
 var sports = ['soccer', 'baseball'];
 var total = sports.push('football', 'swimming');
 // A:
-// sports = 'soccer', 'baseball', 'football', swimming'
-// total = 4
+// sports = ["soccer", "baseball", "football", "swimming"]
+// total = ["soccer", "baseball", "football", "swimming"]
 
 
 // 2.
 // Using the `strings` array, wrte a function `longestString()`
 // that accepts an array argument and returns the longest string in the array
-var strings = ['this','is','a','collection','of','words'];
+var strings = ['this', 'is', 'a', 'collection', 'of', 'words'];
 // A:
-function findLongestWord(strings) {
-  var words = strings.split(' ');
-  var longest = 0;
+function sortArrayByLength(arr, ascYN) {
+  arr.sort(function(a, b) {
+    if (ascYN) return a.length - b.length;
+    else return b.length - a.length;
+  });
+}
+sortArrayByLength(strings, true);
 
-  for (var i=0;i<words.length;i++) {
-    if (words[i].length > longest) {
-      longest = words[i].length;
+var longest = 0;
+var longestString = function() {
+
+  for (var i = 0; i < strings.length; i++) {
+    var word = strings[i];
+    if (strings[i].length > longest) {
+      longest = strings[i].length;
     }
 
-    return longest;
+    var index = strings.length - 1;
+    console.log(strings);
+    console.log("length: " + longest + " index: " + index);
+    console.log(strings[index]);
+    return strings[index];
   }
+};
 
-longestString(strings);
+longestString();
 
+//A:------------------
 
-console.assert(longestString(strings) === 'collection', {"message": "longestString should return 'collection'"});
+console.assert(longestString(strings) === 'collection', {
+  "message": "longestString should return 'collection'"
+});
 }
 
 // Use the `numbers` array for questions 3 - 8.
-var numbers = [1,12,4,18,9,7,11,3,101,5,6];
+var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
 
 
 // 3.
 // Write a function `smallestNumber()` that accepts an array
 // and returns the smallest number in the array.
 // A:
+var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
+
 var smallestNumber = function() {
-  return Math.min(numbers)
+    smallestNumber = Math.min(1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6);
+console.log(smallestNumber)
 }
+smallestNumber()
 
+//A:------------------
 
-console.assert(smallestNumber(numbers) === 1, {"message": "smallestNumber should return 1"});
+console.assert(smallestNumber(numbers) === 1, {
+  "message": "smallestNumber should return 1"
+});
 
 
 // 4.
@@ -55,13 +78,15 @@ var even = function(numbers) {
 };
 
 var getEvens = function() {
-  numbers.filter(even (numbers));
+  numbers.filter(even(numbers));
   return numbers % 2 === 0;
 };
 
 getEvens();
 
-console.assert(getEvens(numbers).toString() === '12,4,18,6', {'message': 'getEvens should return "12,4,18,6"'});
+console.assert(getEvens(numbers).toString() === '12,4,18,6', {
+  'message': 'getEvens should return "12,4,18,6"'
+});
 
 
 // 5.
@@ -71,12 +96,14 @@ console.assert(getEvens(numbers).toString() === '12,4,18,6', {'message': 'getEve
 // and decrement the iterator to zero
 // A:
 function arrayReverser() {
-    numbers.reverse();
+  numbers.reverse();
 };
 
 arrayReverser();
 
-console.assert(arrayReverser(numbers).toString() === '6,5,101,3,11,7,9,18,4,12,1', {'message': 'arrayReverser should return "6,5,101,3,11,7,9,18,4,12,1"'});
+console.assert(arrayReverser(numbers).toString() === '6,5,101,3,11,7,9,18,4,12,1', {
+  'message': 'arrayReverser should return "6,5,101,3,11,7,9,18,4,12,1"'
+});
 
 
 // 6.
@@ -84,13 +111,16 @@ console.assert(arrayReverser(numbers).toString() === '6,5,101,3,11,7,9,18,4,12,1
 // and returns the sum of all of the numbers in the array
 // A:
 function getSum(total, num) {
-    return total + num;
-};
-function sumArray(item) {
-    numbers.reduce(getSum);
+  return total + num;
 };
 
-console.assert(sumArrayOfNumbers(numbers) === 177, {'message': 'sumArrayOfNumbers should return 177'});
+function sumArray(item) {
+  numbers.reduce(getSum);
+};
+
+console.assert(sumArrayOfNumbers(numbers) === 177, {
+  'message': 'sumArrayOfNumbers should return 177'
+});
 
 
 // 7.
@@ -99,7 +129,9 @@ console.assert(sumArrayOfNumbers(numbers) === 177, {'message': 'sumArrayOfNumber
 // A:
 
 
-console.assert(numbersOver10(numbers).toString() === "12,18,11,101", {'message': 'numbersOver10 should return "12,18,11,101"'});
+console.assert(numbersOver10(numbers).toString() === "12,18,11,101", {
+  'message': 'numbersOver10 should return "12,18,11,101"'
+});
 
 
 // 8.
@@ -108,31 +140,35 @@ console.assert(numbersOver10(numbers).toString() === "12,18,11,101", {'message':
 // A:
 
 
-console.assert(numbersOverX(numbers, 15).toString() === "18,101", {'message': 'numbersOverX should return "18,101"'});
+console.assert(numbersOverX(numbers, 15).toString() === "18,101", {
+  'message': 'numbersOverX should return "18,101"'
+});
 
 // 9.
 // Write a function `joinArrays()` that takes an array of arrays,
 // and returns a single array with the contents of the second array
 // listed after the contents of the first array
-var numbers = [1,12,4,18,9,7,11,3,101,5,6];
-var numbersTwo = [33,56,72,2,5,66,90,21,42];
+var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
+var numbersTwo = [33, 56, 72, 2, 5, 66, 90, 21, 42];
 // A:
 
 
-console.assert(joinArrays([numbers, numbersTwo]).toString() === '1,12,4,18,9,7,11,3,101,5,6,33,56,72,2,5,66,90,21,42', {'message': 'joinArrays should return "1,12,4,18,9,7,11,3,101,5,6,33,56,72,2,5,66,90,21,42"'});
+console.assert(joinArrays([numbers, numbersTwo]).toString() === '1,12,4,18,9,7,11,3,101,5,6,33,56,72,2,5,66,90,21,42', {
+  'message': 'joinArrays should return "1,12,4,18,9,7,11,3,101,5,6,33,56,72,2,5,66,90,21,42"'
+});
 
 
 // 10.
 // Using the `instructors` array, comment the value of each variable below
 var instructors = [
-    ['JD','JavaScript'],
-    ['Tim','JavaScript'],
-    ['Brit','Ruby'],
-    ['Joe','iOS'],
-    ['Dan','JavaScript'],
-    ['Will','JavaScript'],
-    ['Calvin','JavaScript'],
-    ['James','Ruby']
+  ['JD', 'JavaScript'],
+  ['Tim', 'JavaScript'],
+  ['Brit', 'Ruby'],
+  ['Joe', 'iOS'],
+  ['Dan', 'JavaScript'],
+  ['Will', 'JavaScript'],
+  ['Calvin', 'JavaScript'],
+  ['James', 'Ruby']
 ];
 
 var instructorNameDiscipline = instructors[5];
