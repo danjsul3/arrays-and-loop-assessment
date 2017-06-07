@@ -57,10 +57,11 @@ var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
 var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
 
 var smallestNumber = function() {
-    smallestNumber = Math.min(1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6);
-console.log(smallestNumber)
+  smallestNumber = Math.min(1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6);
+  console.log(smallestNumber);
+  return smallestNumber;
 }
-smallestNumber()
+smallestNumber();
 
 //A:------------------
 
@@ -73,16 +74,22 @@ console.assert(smallestNumber(numbers) === 1, {
 // Write a function `getEvens()` that accepts an array
 // and returns only the even numbers in the array.
 // A:
-var even = function(numbers) {
-  return numbers % 2 === 0;
+var evens = [];
+var odds = [];
+var evenNumbers = function() {
+  for (var i = 0; i < numbers.length; i++) {
+    if ((numbers[i] % 2) != 1) {
+      evens.push(numbers[i]);
+      console.log(evens);
+    } else {
+      odds.push(numbers[i]);
+    }
+  }
+  return evens;
 };
+evenNumbers(numbers);
 
-var getEvens = function() {
-  numbers.filter(even(numbers));
-  return numbers % 2 === 0;
-};
-
-getEvens();
+//A:-----------------
 
 console.assert(getEvens(numbers).toString() === '12,4,18,6', {
   'message': 'getEvens should return "12,4,18,6"'
@@ -95,11 +102,15 @@ console.assert(getEvens(numbers).toString() === '12,4,18,6', {
 // Hint: When looping over the array, start at the last index
 // and decrement the iterator to zero
 // A:
-function arrayReverser() {
-  numbers.reverse();
-};
+var arrayReverse = function() {
+var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
+var reversed = numbers.reverse();
+console.log(numbers);
+return numbers;
+}
+arrayReverse()
 
-arrayReverser();
+//A:------------------
 
 console.assert(arrayReverser(numbers).toString() === '6,5,101,3,11,7,9,18,4,12,1', {
   'message': 'arrayReverser should return "6,5,101,3,11,7,9,18,4,12,1"'
@@ -110,13 +121,13 @@ console.assert(arrayReverser(numbers).toString() === '6,5,101,3,11,7,9,18,4,12,1
 // Write a function that accepts an array argument
 // and returns the sum of all of the numbers in the array
 // A:
-function getSum(total, num) {
-  return total + num;
+var getSum = function() {
+  var getSum = numbers[0] + numbers[1] + numbers[2] + numbers[3] + numbers[4] + numbers[5] + numbers[6] + numbers[7] + numbers[8] + numbers[9] + numbers[10];
+  console.log (getSum);
+  return getSum;
 };
-
-function sumArray(item) {
-  numbers.reduce(getSum);
-};
+getSum();
+//A:------------------
 
 console.assert(sumArrayOfNumbers(numbers) === 177, {
   'message': 'sumArrayOfNumbers should return 177'
