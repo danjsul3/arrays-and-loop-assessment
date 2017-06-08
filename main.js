@@ -138,7 +138,21 @@ console.assert(sumArrayOfNumbers(numbers) === 177, {
 // Write a function that accepts an array argument
 // and returns an array of only the numbers greater than 10
 // A:
-
+var lessTen = [];
+var greaterTen = [];
+var tenOrMore = function() {
+  for (var i = 0; i < numbers.length; i++) {
+    if (numbers[i] > 10) {
+      greaterTen.push(numbers[i]);
+      console.log(greaterTen);
+    } else {
+      lessTen.push(numbers[i]);
+    }
+  }
+  return greaterTen;
+};
+tenOrMore(numbers);
+//A:-------------------
 
 console.assert(numbersOver10(numbers).toString() === "12,18,11,101", {
   'message': 'numbersOver10 should return "12,18,11,101"'
@@ -149,7 +163,21 @@ console.assert(numbersOver10(numbers).toString() === "12,18,11,101", {
 // Write a function that accepts both an array and number argument
 // and returns an array of only the numbers greater than the number passed to the function
 // A:
-
+var notOverX = [];
+var overX = [];
+var numbersOverX = function(arr, x) {
+  for (var i = 0; i < numbers.length; i++) {
+    if (numbers[i] >= x) {
+      overX.push(numbers[i]);
+      console.log(overX);
+    } else {
+      notOverX.push(numbers[i]);
+    }
+  }
+  return overX;
+};
+numbersOverX(numbers, 15);
+//A:-------------------
 
 console.assert(numbersOverX(numbers, 15).toString() === "18,101", {
   'message': 'numbersOverX should return "18,101"'
