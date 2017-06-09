@@ -12,39 +12,24 @@ var total = sports.push('football', 'swimming');
 // that accepts an array argument and returns the longest string in the array
 var strings = ['this', 'is', 'a', 'collection', 'of', 'words'];
 // A:
-function sortArrayByLength(arr, ascYN) {
-  arr.sort(function(a, b) {
-    if (ascYN) return a.length - b.length;
-    else return b.length - a.length;
-  });
-}
-sortArrayByLength(strings, true);
-
-var longest = 0;
-var longestString = function() {
-
-  for (var i = 0; i < strings.length; i++) {
-    var word = strings[i];
-    if (strings[i].length > longest) {
-      longest = strings[i].length;
+function longestString(array) {
+  var ArrayLength = 0;
+  var solution = "";
+  for (i = 0; i < array.length; i ++){
+    if (array[i].length > ArrayLength) {
+      arrayLength = array[i].length;
+      solution = array[i];
     }
-
-    var index = strings.length - 1;
-    console.log(strings);
-    console.log("length: " + longest + " index: " + index);
-    console.log(strings[index]);
-    return strings[index];
   }
-};
-
-longestString();
+  return solution
+}
 
 //A:------------------
 
 console.assert(longestString(strings) === 'collection', {
   "message": "longestString should return 'collection'"
 });
-}
+
 
 // Use the `numbers` array for questions 3 - 8.
 var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
@@ -56,12 +41,16 @@ var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
 // A:
 var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
 
-var smallestNumber = function() {
-  smallestNumber = Math.min(1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6);
-  console.log(smallestNumber);
-  return smallestNumber;
+function smallestNumber(array) {
+  var smallest = arr[0];
+  for (i = 1; i < array.length; i ++){
+    if (array[i] < smallest) {
+      smallest = array[i];
+    }
+  }
+  return smallest;
 }
-smallestNumber();
+
 
 //A:------------------
 
@@ -74,21 +63,15 @@ console.assert(smallestNumber(numbers) === 1, {
 // Write a function `getEvens()` that accepts an array
 // and returns only the even numbers in the array.
 // A:
-var evens = [];
-var odds = [];
-var evenNumbers = function() {
-  for (var i = 0; i < numbers.length; i++) {
-    if ((numbers[i] % 2) != 1) {
-      evens.push(numbers[i]);
-      console.log(evens);
-    } else {
-      odds.push(numbers[i]);
+function getEvens(array) {
+  var even = [];
+  for (i = 0; i < array.length; i++) {
+    if (array[i] % 2 === 0) {
+      evens.push(array[i]);
     }
   }
-  return evens;
-};
-evenNumbers(numbers);
-
+return evens;
+}
 //A:-----------------
 
 console.assert(getEvens(numbers).toString() === '12,4,18,6', {
@@ -102,13 +85,13 @@ console.assert(getEvens(numbers).toString() === '12,4,18,6', {
 // Hint: When looping over the array, start at the last index
 // and decrement the iterator to zero
 // A:
-var arrayReverse = function() {
-var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
-var reversed = numbers.reverse();
-console.log(numbers);
-return numbers;
+function arrayReverser(array) {
+  var solution = [];
+  for(i = Math.max(array.length - 1, 0); i>=0; i--) {
+    solution.push(array[i]);
+  }
+return solution;
 }
-arrayReverse()
 
 //A:------------------
 
@@ -121,12 +104,13 @@ console.assert(arrayReverser(numbers).toString() === '6,5,101,3,11,7,9,18,4,12,1
 // Write a function that accepts an array argument
 // and returns the sum of all of the numbers in the array
 // A:
-var getSum = function() {
-  var getSum = numbers[0] + numbers[1] + numbers[2] + numbers[3] + numbers[4] + numbers[5] + numbers[6] + numbers[7] + numbers[8] + numbers[9] + numbers[10];
-  console.log (getSum);
-  return getSum;
-};
-getSum();
+function sumArrayOfNumbers(array) {
+  var sum = 0;
+  for (i = 0; i < array.length; i++) {
+    sum += array[i];
+  }
+return sum;
+}
 //A:------------------
 
 console.assert(sumArrayOfNumbers(numbers) === 177, {
@@ -138,20 +122,15 @@ console.assert(sumArrayOfNumbers(numbers) === 177, {
 // Write a function that accepts an array argument
 // and returns an array of only the numbers greater than 10
 // A:
-var lessTen = [];
-var greaterTen = [];
-var tenOrMore = function() {
-  for (var i = 0; i < numbers.length; i++) {
-    if (numbers[i] > 10) {
-      greaterTen.push(numbers[i]);
-      console.log(greaterTen);
-    } else {
-      lessTen.push(numbers[i]);
+function numbersOver10(arr) {
+var greaterThanTen = [];
+  for(i = 0; i < array.length; i ++) {
+    if(array[i] > 10) {
+      greaterThanTen.push(array[i]);
     }
   }
-  return greaterTen;
-};
-tenOrMore(numbers);
+return greaterThanTen;
+}
 //A:-------------------
 
 console.assert(numbersOver10(numbers).toString() === "12,18,11,101", {
@@ -163,20 +142,15 @@ console.assert(numbersOver10(numbers).toString() === "12,18,11,101", {
 // Write a function that accepts both an array and number argument
 // and returns an array of only the numbers greater than the number passed to the function
 // A:
-var notOverX = [];
-var overX = [];
-var numbersOverX = function(arr, x) {
-  for (var i = 0; i < numbers.length; i++) {
-    if (numbers[i] >= x) {
-      overX.push(numbers[i]);
-      console.log(overX);
-    } else {
-      notOverX.push(numbers[i]);
+function numbersOverX(array, n) {
+  var greaterThanX = [];
+  for(i=0; i < array.length; i ++) {
+    if(array[i] > n) {
+      greaterThanX.push(array[i]);
     }
   }
-  return overX;
-};
-numbersOverX(numbers, 15);
+return greaterThanX;
+}
 //A:-------------------
 
 console.assert(numbersOverX(numbers, 15).toString() === "18,101", {
@@ -190,7 +164,11 @@ console.assert(numbersOverX(numbers, 15).toString() === "18,101", {
 var numbers = [1, 12, 4, 18, 9, 7, 11, 3, 101, 5, 6];
 var numbersTwo = [33, 56, 72, 2, 5, 66, 90, 21, 42];
 // A:
+function joinArrays(array1) {
+  var masterArray = [].concat.apply([], array);
+  return masterArray;
 
+//A:------------------
 
 console.assert(joinArrays([numbers, numbersTwo]).toString() === '1,12,4,18,9,7,11,3,101,5,6,33,56,72,2,5,66,90,21,42', {
   'message': 'joinArrays should return "1,12,4,18,9,7,11,3,101,5,6,33,56,72,2,5,66,90,21,42"'
@@ -211,13 +189,13 @@ var instructors = [
 ];
 
 var instructorNameDiscipline = instructors[5];
-// greenvIlleInstructor = <your answer>
+// greenvIlleInstructor = <Will>
 
 var instructorOne = instructors[4][0];
-// instructorOne = <your answer>
+// instructorOne = <Dan, JavaScript>
 
 var instructorTwo = instructors[0][1];
-// instructorTwo = <your answer>
+// instructorTwo = <JD, JavaScript>
 
 var instructorThree = instructors[2][0];
-// instructorThree = <your answer>
+// instructorThree = <Brit, JavaScript>
